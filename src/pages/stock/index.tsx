@@ -95,6 +95,9 @@ const Stock = (props: Props) => {
 	const onAdd = () => {
 		form?.resetFields()
 		setEditItem(true)
+		if (status === 0) {
+			form?.setFieldValue("drugId", faker.datatype.uuid());
+		}
 	}
 
 	const onEdit = (item: any) => {
@@ -188,7 +191,7 @@ const Stock = (props: Props) => {
 				title: '创建时间',
 				dataIndex: 'createdAt',
 				key: 'createdAt',
-				render:(text:any) => (new Date(text).toLocaleString())
+				render: (text: any) => (new Date(text).toLocaleString())
 			},
 			{
 				title: '操作',
@@ -256,7 +259,6 @@ const Stock = (props: Props) => {
 						label="药品编码"
 						name="drugId"
 						rules={[{ required: true, message: '请输入药品编码！' }]}
-						initialValue={status === 0 ? faker.datatype.uuid() : undefined}
 					>
 						<Input />
 					</Form.Item>
