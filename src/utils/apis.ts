@@ -1,7 +1,7 @@
 import { extend } from "umi-request";
 
 const request = extend({
-    prefix: 'http://localhost:7777/'
+    prefix: 'http://192.168.2.1:7777/'
 });
 
 export const insertEmployee = (body: any) => {
@@ -33,5 +33,37 @@ export const findEmployeeByStatus = (status: number, page: number) => {
             page: page,
             pageSize: 10
         }
+    })
+}
+
+export const findStockByStatus = (status: number, page: number) => {
+    return request("drug/findAll", {
+        method: "POST",
+        data: {
+            status: status,
+            page: page,
+            pageSize: 10
+        }
+    })
+}
+
+export const insertStock = (body: any) => {
+    return request("drug/insertStock", {
+        method: "POST",
+        data: body
+    })
+}
+
+export const updateStock = (body: any) => {
+    return request("drug/updateStock", {
+        method: "POST",
+        data: body
+    })
+}
+
+export const deleteStock = (body: any) => {
+    return request("drug/deleteStock", {
+        method: "POST",
+        data: body
     })
 }

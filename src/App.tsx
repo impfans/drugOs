@@ -7,6 +7,7 @@ import Category from "./pages/Category";
 import Employee from "./pages/employee/Employee";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
+import Stock from "./pages/stock";
 const { Header, Content, Sider, Footer } = Layout;
 
 function App() {
@@ -42,7 +43,8 @@ function App() {
 									<Route path="/supplier" element={<Employee />} />
 									<Route path="/clientele" element={<Employee />} />
 									<Route path="/file" element={<Category />} />
-
+									<Route path="/storage" element={<Stock />} />
+									<Route path="/out" element={<Stock />} />
 								</Routes>
 							</main>
 						</Content>
