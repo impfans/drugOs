@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CustomMenu } from "~components";
 import { useAuth } from "~hooks";
+import Category from "./pages/Category";
 import Employee from "./pages/employee/Employee";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
@@ -40,6 +41,8 @@ function App() {
 									<Route path="/staff" element={<Employee />} />
 									<Route path="/supplier" element={<Employee />} />
 									<Route path="/clientele" element={<Employee />} />
+									<Route path="/file" element={<Category />} />
+
 								</Routes>
 							</main>
 						</Content>
