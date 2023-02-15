@@ -53,10 +53,6 @@ const menus: MenuItem[] = [
 				label: "出库管理",
 			},
 			{
-				key: "warning",
-				label: "库存预警",
-			},
-			{
 				key: "check",
 				label: "库存盘点",
 			},
@@ -70,18 +66,6 @@ const menus: MenuItem[] = [
 			{
 				key: "saleReport",
 				label: "销售报表",
-			},
-			{
-				key: "receive",
-				label: "收款记录",
-			},
-			{
-				key: "payment",
-				label: "付款记录",
-			},
-			{
-				key: "profit",
-				label: "利润报表",
 			},
 		],
 	},

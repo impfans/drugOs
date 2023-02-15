@@ -8,15 +8,28 @@ const request = extend({
 
 function Pwd() {
   const onFinish = async (values: any) => {
-    console.log('values:', values)
+    const user: any = window.localStorage.getItem("user")
+    if(user){
+        if(JSON.parse(user)?.password !== values.oldPassword){
+            return message.error('原密码输入错误')
+        }
+    }
 
     if(values.newPassword !== values.password){
         return message.error('密码不一致')
     }
-    await request('employee/pwd', {
+    const res = await request('employee/pwd', {
       method: 'POST',
-      data: {id: 23,password: values.password},
+      data: {id: JSON.parse(user)?.id,password: values.password},
     })
+    console.log(res)
+    if(res.code === 200){
+        message.success('修改成功');
+        window.localStorage.clear();
+        window.location.href = '/login'
+        return 
+    }
+    message.error('密码修改失败')
   }
 
   const onFinishFailed = (errorInfo: any) => {

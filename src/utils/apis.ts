@@ -1,7 +1,7 @@
 import { extend } from "umi-request";
 
 const request = extend({
-    prefix: 'http://192.168.2.1:7777/'
+    prefix: 'http://127.0.0.1:7777/'
 });
 
 export const insertEmployee = (body: any) => {
