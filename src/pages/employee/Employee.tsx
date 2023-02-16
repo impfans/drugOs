@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { DeleteColumnOutlined, DeleteOutlined } from '@ant-design/icons'
 import { deleteEmployee, findEmployeeByStatus, insertEmployee, updateEmployee } from 'src/utils/apis'
 import { keysIn } from 'lodash-es'
+import moment from 'moment'
 
 // const dataSource = [...Array(30)].map((i, k) => {
 // 	return {
@@ -61,6 +62,11 @@ const Employee = () => {
 				key: 'username',
 			},
 			{
+				title: '工号',
+				dataIndex: 'jobNumber',
+				key: 'jobNumber',
+			},
+			{
 				title: '性别',
 				dataIndex: 'sex',
 				key: 'sex',
@@ -84,6 +90,12 @@ const Employee = () => {
 				title: '添加时间',
 				dataIndex: 'createdTime',
 				key: 'createdTime',
+				render: (_: any, record: any)=> <div>{moment(record.createdTime).format('YYYY-MM-DD')}</div>
+			},
+			{
+				title: '备注',
+				dataIndex: 'description',
+				key: 'description',
 			},
 			{
 				title: '操作',
@@ -98,16 +110,20 @@ const Employee = () => {
 		]
 
 		if(status === 1){
-			delete base[2]
 			delete base[3]
+			delete base[4]
 		}
 
 		if(status === 2){
+			delete base[3]
 			delete base[2]
+
 		}
 
 		if(status === 3){
-			delete base[3]
+			delete base[4]
+			delete base[2]
+
 		}
 
 		return base

@@ -36,13 +36,16 @@ export const findEmployeeByStatus = (status: number, page: number) => {
     })
 }
 
-export const findStockByStatus = (status: number, page: number) => {
+export const findStockByStatus = (status: number, page: number,name?: string,drugId?: string) => {
     return request("drug/findAll", {
         method: "POST",
         data: {
             status: status,
             page: page,
-            pageSize: 10
+            pageSize: 10,
+            name: name || '',
+            drugId: drugId || ''
+
         }
     })
 }

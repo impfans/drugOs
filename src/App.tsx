@@ -6,7 +6,9 @@ import { useAuth } from '~hooks'
 import Category from './pages/Category'
 import Employee from './pages/employee/Employee'
 import Index from './pages/Index'
+import Inventory from './pages/Inventory'
 import Login from './pages/Login'
+import Sale from './pages/Sale'
 import Stock from './pages/stock'
 import Pwd from './pages/user/Pwd'
 import UserList from './pages/user/UserList'
@@ -58,6 +60,7 @@ function App() {
               <main>
                 <Routes>
                   <Route path="/" element={<Index />} />
+                  <Route path="/index" element={<Index />} />
                   <Route path="/staff" element={<Employee />} />
                   <Route path="/supplier" element={<Employee />} />
                   <Route path="/clientele" element={<Employee />} />
@@ -66,6 +69,10 @@ function App() {
                   <Route path="/out" element={<Stock />} />
                   <Route path="/admin" element={<UserList />} />
                   <Route path="/password" element={<Pwd />} />
+                  <Route path="/saleReport" element={<Sale />} />
+                  <Route path="/check" element={<Inventory />} />
+
+				  
                 </Routes>
               </main>
             </Content>

@@ -69,11 +69,11 @@ const menus: MenuItem[] = [
 			},
 		],
 	},
-	{
-		key: "expired",
-		icon: React.createElement(RestFilled),
-		label: "过期药品管理",
-	},
+	// {
+	// 	key: "expired",
+	// 	icon: React.createElement(RestFilled),
+	// 	label: "过期药品管理",
+	// },
 	{
 		key: "system",
 		icon: React.createElement(SettingFilled),
