@@ -1,5 +1,5 @@
-import { Button, Form, FormInstance, Input, InputNumber, message, Modal, Select, Space } from 'antd'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Button, Form, FormInstance, Input, InputNumber, InputRef, message, Modal, Select, Space } from 'antd'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { PublicTable } from 'src/components/PublicTable'
 import { faker } from '@faker-js/faker'
 import { useLocation } from 'react-router-dom'
@@ -30,6 +30,9 @@ const Employee = () => {
 	const [editItem, setEditItem] = useState<any>(false);
 	const [modal, contextHolder] = Modal.useModal();
 	const [form] = Form.useForm();
+	const jobNumberInput = useRef<HTMLInputElement>(null);
+	const usernameInput = useRef<InputRef>(null);
+
 	const location = useLocation();
 
 	useEffect(() => {
@@ -90,7 +93,7 @@ const Employee = () => {
 				title: '添加时间',
 				dataIndex: 'createdTime',
 				key: 'createdTime',
-				render: (_: any, record: any)=> <div>{moment(record.createdTime).format('YYYY-MM-DD')}</div>
+				render: (_: any, record: any) => <div>{moment(record.createdTime).format('YYYY-MM-DD')}</div>
 			},
 			{
 				title: '备注',
@@ -109,18 +112,18 @@ const Employee = () => {
 			},
 		]
 
-		if(status === 1){
+		if (status === 1) {
 			delete base[3]
 			delete base[4]
 		}
 
-		if(status === 2){
+		if (status === 2) {
 			delete base[3]
 			delete base[2]
 
 		}
 
-		if(status === 3){
+		if (status === 3) {
 			delete base[4]
 			delete base[2]
 
@@ -130,7 +133,7 @@ const Employee = () => {
 	}, [status]);
 
 	const loadData = async (status: number) => {
-		const res = await findEmployeeByStatus(status, page);
+		const res = await findEmployeeByStatus(status, page, parseInt(jobNumberInput.current!.value.toString(), 10), usernameInput.current?.input?.value);
 		if (res.code === 200) {
 			setDataSource(res.data.data);
 			setTotal(res.data.count)
@@ -201,7 +204,15 @@ const Employee = () => {
 
 	return (
 		<div>
-			<div style={{ marginBottom: 10 }}>
+			<div style={{ marginBottom: 10, display: "grid", gridTemplateColumns: "150px 150px 64px 64px", gap: 10 }}>
+				{
+					status === 1 &&
+					<>
+						<InputNumber ref={jobNumberInput} placeholder='工号' style={{ width: "100%" }} />
+						<Input ref={usernameInput} placeholder='用户名' width={120} />
+						<Button type='primary' onClick={() => loadData(status)}>搜索</Button>
+					</>
+				}
 				<Button type='primary' onClick={onAdd}>添加</Button>
 			</div>
 

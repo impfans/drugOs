@@ -25,18 +25,20 @@ export const deleteEmployee = (body: any) => {
     })
 }
 
-export const findEmployeeByStatus = (status: number, page: number) => {
+export const findEmployeeByStatus = (status: number, page: number, jobNum?: number, username?: string) => {
     return request("/employee/findAll", {
         method: "POST",
         data: {
             status: status,
             page: page,
+            jobNumber: jobNum,
+            username: username,
             pageSize: 10
         }
     })
 }
 
-export const findStockByStatus = (status: number, page: number,name?: string,drugId?: string) => {
+export const findStockByStatus = (status: number, page: number, name?: string, drugId?: string) => {
     return request("drug/findAll", {
         method: "POST",
         data: {
